@@ -13,15 +13,15 @@
 \usepackage{hyperref}
   \hypersetup{
     colorlinks = true,
-    urlcolor = blue,       % color of external links using \href
-    linkcolor= blue,       % color of internal links 
-    citecolor= blue,       % color of links to bibliography
-    filecolor= blue,        % color of file links
-    }
+    urlcolor = blue,
+    linkcolor= blue,
+    citecolor= blue,
+    filecolor= blue,
+  }
     
 \usepackage{listings}
-\usepackage[utf8]{inputenc}                                                    
-\usepackage[T1]{fontenc}                                                       
+\usepackage[utf8]{inputenc}                                                     
+\usepackage[T1]{fontenc}                                                        
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -45,14 +45,14 @@
 }
 
 \newtheoremstyle{theorem}
-  {\topsep}   % ABOVESPACE
-  {\topsep}   % BELOWSPACE
-  {\itshape\/}  % BODYFONT
-  {0pt}       % INDENT (empty value is the same as 0pt)
-  {\bfseries} % HEADFONT
-  {.}         % HEADPUNCT
-  {5pt plus 1pt minus 1pt} % HEADSPACE
-  {}          % CUSTOM-HEAD-SPEC
+  {\topsep}   
+  {\topsep}   
+  {\itshape}  
+  {0pt}       
+  {\bfseries} 
+  {.}         
+  {5pt plus 1pt minus 1pt} 
+  {}
 \theoremstyle{theorem} 
    \newtheorem{theorem}{Theorem}[section]
    \newtheorem{corollary}[theorem]{Corollary}
@@ -85,6 +85,69 @@
 
 \subsection{Week 1}
 
+\subsubsection{Homework 1: Introduction to Automata}
+\begin{description}
+    \item[Problem 1:] \textbf{Characterize All Words to Sum 25 Cents}\\
+    All words that end in the accepting state follow a pattern. They can be one of three things: Five fives, three fives and one ten, or one five and two tens. This can be written as:
+    $$(5^5) | (5^310) | (5^110^2)$$
+    This is every possible combination of valid answers, but answers over 25 cents are rejected.
+    
+    \item[Problem 2:] \textbf{Create a Regular Expression to express the pattern in the image}\\
+    The pattern consists of any number of pushes and pays followed by at least one pay. Following the guidelines in the homework, the regex is:
+    \[ (push + pay)^* pay \]
+\end{description}
+
+\subsubsection{Homework 1: DFAs and NFAs}
+\begin{description}
+    \item[Problem 1:] \textbf{Determine whether the following words belong to L1, L2, or L3.}\\
+    \begin{align*}
+    L1 &:= \{x01y \mid x, y \in \Sigma^*\}\\
+    L2 &:= \{w \mid |w| = 2^n, n \in \mathbb{N}\}\\
+    L3 &:= \{w \mid |w_0| = |w_1|\}
+    \end{align*}
+    
+    L1 accepts any word that contains ``01'' in it. L2 accepts words where the length is a power of 2. L3 accepts any word where the word is of equivalent length to the word w0.
+
+    \begin{center}
+    \begin{tabular}{||c c c c||} 
+     \hline
+       & L1 & L2 & L3 \\ [0.5ex] 
+     \hline\hline
+     w1 = 10011 & 1 & 0 & 1 \\
+     \hline
+     w2 = 100 & 0 & 0 & 0 \\
+     \hline
+     w3 = 10100100 & 1 & 1 & 0 \\
+     \hline
+     w4 = 1010011100 & 1 & 0 & 0 \\
+     \hline
+     w5 = 11110000 & 0 & 1 & 0 \\ [1ex] 
+     \hline
+    \end{tabular}
+    \end{center}
+
+    \item[Problem 2:] \textbf{Determining Accepted States}\\
+    We have a DFA defined as follows:
+    \begin{enumerate}
+        \item $Q=\{q_0,q_1,q_2\}$
+        \item $\Sigma=\{0,1\}$
+        \item Transition function:
+        \begin{align*}
+        \delta(q_0,0) &= q_2, &\delta(q_0,1) &= q_0,\\
+        \delta(q_2,0) &= q_2, &\delta(q_1,1) &= q_0,\\
+        \delta(q_1,0) &= \delta(q_1,1) = q_1
+        \end{align*}
+        \item Initial state: $q_0$
+        \item Accepting state: $F=\{q_1\}$
+    \end{enumerate}
+    For the words $w_1 = 0010$, $w_2 = 1101$, and $w_3 = 1100$, only $w_1$ and $w_2$ end in the accepted state $q_1$.
+\end{description}
+
+\subsection{Exploration}
+I believe this material is included in the course because sets up the formal definitions of DFAs and NFAs that we can build off of later in the course. This material is quite interesting to me, because it seems you can build an automata for many things we use in our everyday life. My coffee maker has a selection of inputs, a beginning state, and a goal state, and I think it follows the definition of a DFA. Defining everyday objects as automata makes me understand coursework and comprehend the course better, as I can apply what we learn to everyday objects.
+
+\subsection{Questions and Comments}
+How common are objects in our lives that follow a DFA scheme? For example, an app on a phone could be seen as automata, and perhaps Instagram's "Goal State" would be keeping the app open for as long as possible.
 \section{Synthesis}
 
 \section{Evidence of Participation}
