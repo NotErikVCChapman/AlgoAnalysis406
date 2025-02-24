@@ -48,6 +48,7 @@ def __main__():
         q0=1,
         F={3},
     )
+    
 
     words = generate_words()
     automata = [A1, A2]

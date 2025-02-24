@@ -33,3 +33,17 @@ class DFA:
         if state in self.F:
             return True
         return False
+
+    def refuse(self):
+        # Loop through states,
+        #   if state is not in F, add to new list N
+        #   final states are now the states of N
+        N = set()
+        for state in self.Q:
+            if state not in self.F:
+                N.add(state)
+
+        # Create a new DFA that uses N
+        newDFA = DFA(Q=self.Q, Sigma=self.Sigma, delta=self.delta, q0=self.q0, F=N)
+
+        return newDFA
