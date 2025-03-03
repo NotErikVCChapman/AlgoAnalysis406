@@ -241,6 +241,49 @@ I think this material is included in the course because it requires the students
 \subsubsection{Questions and Comments}
 Is there a purpose to have the inverse of all DFAs? I understand many DFAs and their inverses have applications, but some DFAs must have an application and their inverse is completely useless
 
+\subsection{Week 3}
+\subsubsection{Homework 3: Operations On Automata}
+\begin{description}
+\item[Problem 1: ] \textbf{Extended Transition Functions}\\
+The langauge accepted by A2 are words that are an odd number of characters in length and do not have any sequential b's. 
+
+If we look at our function, S(state, letter), we can recursively find what the state is for any given word.
+$$ S(1, abaa) = S(S(1, a), baa)$$
+$$S(1, a) = 2$$
+We then substitute to simplify:
+$$S(2, baa) = S(S(2, b), aa)$$
+$$S(2,b) = 4$$
+Substitute again:
+$$S(4, aa) = S(S(4, a), a)$$
+$$S(4, a) = 2$$
+Final State:
+$$S(2, a) = 3$$
+
+We then repeat the process for S2.
+$$ S(1, abba) = S(S(1, a), bba)$$
+$$S(1, a) = 2$$
+We then substitute to simplify:
+$$S(2, bba) = S(S(2, b), ba)$$
+$$S(2,b) = 1$$
+Substitute again:
+$$S(1, ba) = S(S(1, b), a)$$
+$$S(1, b) = 3$$
+Final State:
+$$S(3, a) = 3$$
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{PXL_20250303_044326021.jpg}
+    \caption{The $L(\mathcal A) = L(\mathcal A^{(1)}) \cap L(\mathcal A^{(1)})$}
+    \label{fig:enter-label}
+\end{figure}
+
+We are sure that our new DFA, L3 is the combination of L1 and L2 because if captures every possible state of the two that is reachable. Every point in L3 is a set of the two states in L1 and L2, and it captures all possible routes that can make it to that place.
+
+In order to change L3 such that is becomes the union of L1 and L2, you would need to make a new DFA that accepts all the words that both L1 and L2 accept. 
+\end{description}
+
+
 
 \section{Synthesis}
 
