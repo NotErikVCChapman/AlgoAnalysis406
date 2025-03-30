@@ -1,3 +1,6 @@
+import nfa
+
+
 # a class for DFAs
 # modify as needed
 class DFA:
@@ -47,3 +50,14 @@ class DFA:
         newDFA = DFA(Q=self.Q, Sigma=self.Sigma, delta=self.delta, q0=self.q0, F=N)
 
         return newDFA
+
+    def to_NFA(self):
+        N1 = nfa.NFA(
+            Q=self.Q,
+            Sigma=self.Sigma,
+            delta=self.delta,  # transition function wont be a list but shrug
+            q0=self.q0,
+            F=self.F,
+        )
+
+        return N1
