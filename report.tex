@@ -273,7 +273,7 @@ $$S(3, a) = 3$$
 
 \begin{figure}
     \centering
-    \includegraphics[width=1\linewidth]{PXL_20250303_044326021.jpg}
+    \includegraphics[width=0.5\linewidth]{PXL_20250303_044326021.jpg}
     \caption{The $L(\mathcal A) = L(\mathcal A^{(1)}) \cap L(\mathcal A^{(1)})$}
     \label{fig:enter-label}
 \end{figure}
@@ -283,6 +283,73 @@ We are sure that our new DFA, L3 is the combination of L1 and L2 because if capt
 In order to change L3 such that is becomes the union of L1 and L2, you would need to make a new DFA that accepts all the words that both L1 and L2 accept. 
 \end{description}
 
+\subsection{Week 4}
+\subsubsection{Homework 4: Determinization}
+\begin{description}
+\item[Problem 1: ] \textbf{Explain how a DFA can be seen as an NFA}\\
+
+A DFA can be seen as an NFA because the transition function can be changed from a mapping of a state and an input to be an input and a set of states that it leads to. A DFA will have singleton states and the remaining features of the DFA stay the same in the new NFA. Because every DFA is an NFA by definition, L(A) will equal L(A') every time.
+
+\item[Problem 2: ] \textbf{Describing NFAs. See Fig 2.}\\
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{PXL_20250310_061036686.jpg}
+    \caption{Homework 4, Problem 2}
+    \label{fig:enter-label}
+\end{figure}
+\end{description}
+
+\subsubsection{Exploration}
+I like this material in the course, because I can see how an NFA would be more useful than a DFA, but harder to implement in code. I am working on the first project, and it is quite stimulating to think about the changes required to alter an NFA to become a DFA.
+
+\subsubsection{Questions and Comments}
+Are there some things that regular expressions cannot solve? It is really good at pattern matching and parsing text, but I cannot imagine that it would be good at natural language text.
+
+\subsection{Week 4}
+\subsubsection{Homework 5: ITALC Problems}
+\begin{description}
+\item[Problem 1: ] \textbf{ITALC 3.2.1 }\\
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{ITALC 3.2.1.jpg}
+    \caption{3.2.1 Part 1}
+    \label{fig:enter-label}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{ITALC 3.2.1.2.jpg}
+    \caption{ITALC 3.2.1 Part 2}
+    \label{fig:enter-label}
+\end{figure}
+
+\item[Problem 2: ] \textbf{ITALC 3.2.2 }\\
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{ITALC 3.2.2.jpg}
+    \caption{ITALC 3.2.2}
+    \label{fig:enter-label}
+\end{figure}
+
+\item[Problem 3: ] \textbf{ITALC 4.4.1 }\\
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{ITALC 4.4.1.jpg}
+    \caption{ITALC 4.4.1}
+    \label{fig:enter-label}
+\end{figure}
+
+\item[Problem 4: ] \textbf{ITALC 4.4.2 }\\
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{ITALC 4.4.2.jpg}
+    \caption{ITALC 4.4.2}
+    \label{fig:enter-label}
+\end{figure}
+
+\end{description}
 
 
 \section{Synthesis}
