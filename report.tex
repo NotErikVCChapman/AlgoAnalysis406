@@ -305,53 +305,135 @@ I like this material in the course, because I can see how an NFA would be more u
 \subsubsection{Questions and Comments}
 Are there some things that regular expressions cannot solve? It is really good at pattern matching and parsing text, but I cannot imagine that it would be good at natural language text.
 
-\subsection{Week 4}
+\subsection{Week 5}
 \subsubsection{Homework 5: ITALC Problems}
+All the problems are in image form, because the proofs would take a long time to type.
+
+\begin{figure}[h]
+    \centerline{\includegraphics[width=0.5\linewidth]{ITALC 3.2.1.jpg}}
+    \caption{ITALC Problem 3.2.1 Part 1}
+\end{figure}
+
+\begin{figure}
+    \centerline{\includegraphics[width=0.5\linewidth]{ITALC 3.2.1.2.jpg}}
+    \caption{ITALC Problem 3.2.1 Part 2}
+\end{figure}
+
+\begin{figure}
+    \centerline{\includegraphics[width=0.5\linewidth]{ITALC 3.2.2.jpg}}
+    \caption{ITALC Problem 3.2.2}
+\end{figure}
+
+\begin{figure}
+    \centerline{\includegraphics[width=0.5\linewidth]{ITALC 4.4.1.jpg}}
+    \caption{ITALC Problem 4.4.1}
+\end{figure}
+
+\begin{figure}
+    \centerline{\includegraphics[width=0.5\linewidth]{ITALC 4.4.2.jpg}}
+    \caption{ITALC Problem 4.4.2}
+\end{figure}
+
+
+
+\subsubsection{Exploration}
+This material is quite interesting, but the proofs for RegEx are quite complicated. I am not too sure about the RegEx simplification, and I think I got some of the simplified formulas wrong. However it was very eye opening to work through these problems
+
+\subsubsection{Questions and Comments}
+Is there an easier method to prove that a DFA follows a regex structure? It takes a lot of work to probe a simple three state DFA, I cannot imagine it being feasible hand writing these formulas for more than four states. 
+
+\subsection{Week 6 and 7}
+\subsubsection{Homework 6:}
 \begin{description}
-\item[Problem 1: ] \textbf{ITALC 3.2.1 }\\
-\begin{figure}
+\item[Exercise A:] \textbf{ }\\
+
+1. For an input $10^n$, this Turing Machine returns $10^{n+1}$
+  \begin{center}
+    \begin{tabular}{||c c c c||} 
+     \hline
+      state & 0 & 1 & B \\ [0.5ex] 
+     \hline\hline
+     q0 & X & q1,1,R & X\\
+     \hline
+     q1 & q1,0,R & X & q2, 0, R \\
+     \hline
+     q2 & X & X & X \\[1ex] 
+     \hline
+    \end{tabular}
+    \end{center}
+
+2. For an input $10^n$, this Turing Machine returns 1
+  \begin{center}
+    \begin{tabular}{||c c c c||} 
+     \hline
+      state & 0 & 1 & B \\ [0.5ex] 
+     \hline\hline
+     q0 & X & q1,1,R & X\\
+     \hline
+     q1 & q1,B,R & X & q2, B, R \\
+     \hline
+     q2 & X & X & X \\[1ex] 
+     \hline
+    \end{tabular}
+    \end{center}
+
+3. For an input of a binary string, this returns the 1's swapped with 0's and the 0's swapped with 1's.
+  \begin{center}
+    \begin{tabular}{||c c c c||} 
+     \hline
+      state & 0 & 1 & B \\ [0.5ex] 
+     \hline\hline
+     q0 & q0,1,R & q1,0,R & q1,0,R\\
+     \hline
+     q1 & X & X & X \\[1ex] 
+     \hline
+    \end{tabular}
+    \end{center}
+
+\item[Exercise B: Done for Extra Credit] \textbf{ }\\
+1. If we want to take input $10^n10^m$ and output $10^n10^m10^{n+m}$, we would begin by writing the entire string to the output, write an extra 1, then go back to the beginning. Then, when you read a 0, go to the end, write a 0, then go back to the beginning. When you reach a 1, go to a new 0 (using new states), and then go to the end and write a 0. Repeat this process until you hit the next 1, and then copy this pattern for the second part. You will end up with $10^n10^m10^{n+m}$.
+
+2. In order to double any binary string, like 111000, we could have one state for each digit in the string. We could read the first digit, go to the end of the string, write the digit, go back to the first digit, then go one digit right, and repeat. This would double 111000 to 111000111000, and would double any binary string. 
+
+\item[Exercise C: Done for Extra Credit] \textbf{ }\\
+These are the transition diagrams for Exercise A of this assignment. MA1 is exercise 1, MA2 is exercise 2, and MA3 is exercise 3.
+\begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\linewidth]{ITALC 3.2.1.jpg}
-    \caption{3.2.1 Part 1}
-    \label{fig:enter-label}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\linewidth]{ITALC 3.2.1.2.jpg}
-    \caption{ITALC 3.2.1 Part 2}
-    \label{fig:enter-label}
-\end{figure}
-
-\item[Problem 2: ] \textbf{ITALC 3.2.2 }\\
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\linewidth]{ITALC 3.2.2.jpg}
-    \caption{ITALC 3.2.2}
-    \label{fig:enter-label}
-\end{figure}
-
-\item[Problem 3: ] \textbf{ITALC 4.4.1 }\\
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\linewidth]{ITALC 4.4.1.jpg}
-    \caption{ITALC 4.4.1}
-    \label{fig:enter-label}
-\end{figure}
-
-\item[Problem 4: ] \textbf{ITALC 4.4.2 }\\
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\linewidth]{ITALC 4.4.2.jpg}
-    \caption{ITALC 4.4.2}
+    \includegraphics[width=0.5\linewidth]{86bf363f-db99-4b51-a4ac-a5e2bc00240a~1.jpg}
+    \caption{Transition Diagrams}
     \label{fig:enter-label}
 \end{figure}
 
 \end{description}
 
+\subsubsection{Exploration}
+I wonder if we can make a hardware version of a Turing machine, and could we make it more powerful than a modern processor? We may have to ditch a physical tape method, but maybe a 1s and 0s bit stream could do something similar. 
 
+\subsubsection{Questions and Comments}
+If we had a infinitely fast turing machine, what problems could we solve with it? For example, could we mine all remaining cryptocurrencies or solve the stock market? And can we create multiple constructions of turing machines that solve the same problem?
+
+\subsubsection{Homework 7:}
+\begin{description}
+\item[Exercise 1:] \textbf{ }\\
+Which of the following languages are decidable, recursively enumerable (r.e.), or have recursively enumerable complement (co-r.e.)?
+
+1. $$L_1 := \{M \; | \; \text{$M$ halts on itself} \}$$
+2. $$L_2 := \{(M,w) \; | \; \text{$M$ halts on the word $w$} \}$$
+3. $$L_3 := \{(M,w,k) \; | \; \text{$M$ halts on $w$ in at most $k$ steps} \}$$
+
+1. L1 is not decidable because it is essentially the diagonal langauge. This means that our language would not be able to decide in finite time whether the input is accepting or rejecting. L1 is recursively enumerable because we can take a machine that takes in Mi, and then simulates M on Mi and accepts if M accepts. If this accepts, then our machine will accept Mi. This language is not co-r.e. because the complement would include both machines that do not accept Mi and machines that do not halt on Mi, and it would be impossible for us to determine which of these machines it is. This makes it not co-r.e.
+
+2. L2 is not decidable because there can be no Turing machine that can decide for every M and w whether M(w) halts. This was proven by Turing himself. L2 is recursively enumerable because we can simulate every step of M(w). If M(w) halts, we will see it happen, and accept, and if it doesn't halt it will run forever. L2 is not co-r.e. because if our language does not halt on the word w, we will have no way of determining if the word is in the language. This means it cannot be co-r.e.
+
+3. L3 is decidable because there is a specific bound to check if M halted. If M has not halted within that time, we can tell that the word is not in the language. It is also recursively enumerable and decidable because it is decidable.
+
+\end{description}
+
+\subsubsection{Exploration}
+This makes me wonder if there are a finite set of decidable and undecidable problems. I would not know how to approach this problem, but it would be interesting to see if there are infinite problems.
+
+\subsubsection{Questions and Comments}
+Is the set of decidable problems infinite? Or what about the set of undecidable problems? If they are infinite, do we have simplification methods to reduce the size of things we have to compute?
 \section{Synthesis}
 
 \section{Evidence of Participation}
