@@ -425,7 +425,7 @@ Which of the following languages are decidable, recursively enumerable (r.e.), o
 
 2. L2 is not decidable because there can be no Turing machine that can decide for every M and w whether M(w) halts. This was proven by Turing himself. L2 is recursively enumerable because we can simulate every step of M(w). If M(w) halts, we will see it happen, and accept, and if it doesn't halt it will run forever. L2 is not co-r.e. because if our language does not halt on the word w, we will have no way of determining if the word is in the language. This means it cannot be co-r.e.
 
-3. L3 is decidable because there is a specific bound to check if M halted. If M has not halted within that time, we can tell that the word is not in the language. It is also recursively enumerable and decidable because it is decidable.
+3. L3 is decidable because there is a specific bound to check if M halted. If M has not halted within that time, we can tell that the word is not in the language. It is also recursively enumerable and complement recursively enumerable because it is decidable.
 
 \end{description}
 
@@ -434,6 +434,114 @@ This makes me wonder if there are a finite set of decidable and undecidable prob
 
 \subsubsection{Questions and Comments}
 Is the set of decidable problems infinite? Or what about the set of undecidable problems? If they are infinite, do we have simplification methods to reduce the size of things we have to compute?
+
+
+\subsection{Week 8 and 9}
+
+\subsection{Homework 8: Big O Notation Properties}
+
+\subsubsection{Exercise 1}
+
+\begin{itemize}
+    \item \textbf{Exercise 1: Order Functions by Growth Rate} \\
+    Order the functions: \( 2^n \), \( e^{\log n} \), \( \log(n) \), \( e^n \), \( e^{2 \log(n)} \), \( \log(\log(n)) \), \( 2^{2n} \), \( n! \). \\
+    Simplify: \( e^{\log n} = n \), \( e^{2 \log(n)} = n^2 \) \\
+    Slowest to Fastest: \\
+    - \( \log(\log(n)) \) \\
+    - \( \log(n) \) \\
+    - \( n \) \\
+    - \( n^2 \) \\
+    - \( 2^n \) \\
+    - \( e^n \) \\ 
+    - \( n! \) \\
+    - \( 2^{2{^n}} \) \\
+\end{itemize}
+
+\subsubsection{Exercise 2}
+
+\begin{itemize}
+    \item \textbf{Property 1: $f \in O(f)$}
+    \begin{proof}
+        By definition, $f \in O(f)$ if $\exists M, N$ such that $\forall n \geq N$, $f(n) \leq M \cdot f(n)$. \\
+        Set $M = 1$, $N = 1$. \\
+        Then $\forall n \geq 1$, $f(n) \leq 1 \cdot f(n)$, which is true since $f(n) = f(n)$. \\
+        Thus, $f \in O(f)$.
+    \end{proof}
+
+    \item \textbf{Property 2: If $c > 0$, then $O(c \cdot f) = O(f)$}
+    \begin{proof}
+        \underline{$O(c \cdot f) \subseteq O(f)$}: \\
+        Let $h \in O(c \cdot f)$. \\
+        $\exists M_1, N_1$ such that $\forall n \geq N_1$, $h(n) \leq M_1 \cdot (c \cdot f(n)) = (M_1 \cdot c) \cdot f(n)$. \\
+        Set $M = M_1 \cdot c$. \\
+        Then $h(n) \leq M \cdot f(n)$, so $h \in O(f)$. \vspace{1mm} \\
+        \underline{$O(f) \subseteq O(c \cdot f)$}: \\
+        Let $h \in O(f)$. \\
+        $\exists M_2, N_2$ such that $\forall n \geq N_2$, $h(n) \leq M_2 \cdot f(n) = \left(\frac{M_2}{c}\right) \cdot (c \cdot f(n))$. \\
+        Set $M = \frac{M_2}{c}$. \\
+        Then $h(n) \leq M \cdot (c \cdot f(n))$, so $h \in O(c \cdot f)$. \\
+        Thus, $O(c \cdot f) = O(f)$.
+    \end{proof}
+
+    \item \textbf{Property 3: If $f(n) \leq g(n)$ for large $n$, then $O(f) \subseteq O(g)$}
+    \begin{proof}
+        Let $h \in O(f)$. \\
+        $\exists M_1, N_1$ such that $\forall n \geq N_1$, $h(n) \leq M_1 \cdot f(n)$. \\
+        Given $f(n) \leq g(n)$ $\forall n \geq N_2$, set $N = \max(N_1, N_2)$. \\
+        Then $\forall n \geq N$, $h(n) \leq M_1 \cdot f(n) \leq M_1 \cdot g(n)$. \\
+        Thus, $h \in O(g)$, so $O(f) \subseteq O(g)$.
+    \end{proof}
+
+    \item \textbf{Property 4: If $O(f) \subseteq O(g)$, then $O(f + h) \subseteq O(g + h)$}
+    \begin{proof}
+        Let $k \in O(f + h)$. \\
+        $\exists M_1, N_1$ such that $\forall n \geq N_1$, $k(n) \leq M_1 \cdot (f(n) + h(n))$. \\
+        Since $O(f) \subseteq O(g)$, $\exists M_2, N_2$ such that $\forall n \geq N_2$, $f(n) \leq M_2 \cdot g(n)$. \\
+        For $n \geq N_2$, $f(n) + h(n) \leq M_2 \cdot g(n) + h(n) \leq (M_2 + 1) \cdot (g(n) + h(n))$. \\
+        Set $N = \max(N_1, N_2)$, $M = M_1 \cdot (M_2 + 1)$. \\
+        Then $k(n) \leq M \cdot (g(n) + h(n))$, so $k \in O(g + h)$. \\
+        Thus, $O(f + h) \subseteq O(g + h)$.
+    \end{proof}
+
+    \item \textbf{Property 5: If $h(n) > 0$ $\forall n$, and $O(f) \subseteq O(g)$, then $O(f \cdot h) \subseteq O(g \cdot h)$}
+    \begin{proof}
+        Let $k \in O(f \cdot h)$. \\
+        $\exists M_1, N_1$ such that $\forall n \geq N_1$, $k(n) \leq M_1 \cdot (f(n) \cdot h(n))$. \\
+        Since $O(f) \subseteq O(g)$, $\exists M_2, N_2$ such that $\forall n \geq N_2$, $f(n) \leq M_2 \cdot g(n)$. \\
+        For $n \geq N_2$, $f(n) \cdot h(n) \leq M_2 \cdot g(n) \cdot h(n)$. \\
+        Set $N = \max(N_1, N_2)$, $M = M_1 \cdot M_2$. \\
+        Then $k(n) \leq M \cdot (g(n) \cdot h(n))$, so $k \in O(g \cdot h)$. \\
+        Thus, $O(f \cdot h) \subseteq O(g \cdot h)$.
+    \end{proof}
+\end{itemize}
+
+\subsubsection{Exercise 5}
+
+\begin{itemize}
+    \item \textbf{Pair 1: Bubble Sort vs. Insertion Sort} \\
+    Bubble sort: worst, average \( O(n^2) \), best \( O(n) \) (optimized). \\
+    Insertion sort: worst, average \( O(n^2) \), best \( O(n) \). \\
+    Let \( f(n) = n^2 \) (bubble sort), \( g(n) = n^2 \) (insertion sort). By Property 1 (\( f \in O(f) \)), \( O(f) = O(g) = O(n^2) \). Insertion sort often outperforms bubble sort in practice (fewer swaps).
+
+    \item \textbf{Pair 2: Insertion Sort vs. Merge Sort} \\
+    Insertion sort: worst, average \( O(n^2) \), best \( O(n) \). \\
+    Merge sort: all cases \( O(n \log n) \). \\
+    Let \( f(n) = n^2 \) (insertion sort), \( g(n) = n \log n \) (merge sort). Since \( n \log n \leq n^2 \), by Property 3, \( O(n \log n) \subseteq O(n^2) \). Merge sort is asymptotically faster.
+
+    \item \textbf{Pair 3: Merge Sort vs. Quick Sort} \\
+    Merge sort: all cases \( O(n \log n) \). \\
+    Quick sort: best, average \( O(n \log n) \), worst \( O(n^2) \). \\
+    Let \( f(n) = n \log n \) (merge sort), \( g(n) = n \log n \) (quick sort average). By Property 1, \( O(f) = O(g) = O(n \log n) \). Quick sort’s worst case is \( O(n^2) \), but it’s often faster in practice (better cache locality).
+\end{itemize}
+
+\subsection{Discussion}
+These proofs solidify the understanding of Big O notation as a tool for analyzing algorithm complexity, connecting asymptotic analysis to practical performance evaluation.
+
+\subsection{Questions and Reflections}
+How do these properties extend to other asymptotic notations like $\Theta$ or $\Omega$? Are there cases where Big O comparisons fail to capture practical differences in algorithm performance?
+
+
+
 \section{Synthesis}
 
 \section{Evidence of Participation}
