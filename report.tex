@@ -545,30 +545,91 @@ How do these properties extend to other asymptotic notations like $\Theta$ or $\
 
 \subsection{Homework 10 and 11}
 
-\subsubsection{Exercises}
-TODO: Write up in LaTeX for final report.
-\begin{figure}
-    \centering
-    \includegraphics[width=0.5\linewidth]{img1.jpg}
-    \caption{Image 1}
-    \label{fig:enter-label}
+\begin{figure}[h]
+    \centerline{\includegraphics[width=0.5\linewidth]{img2.jpg}}
+    \caption{HW 10}
 \end{figure}
 
-\begin{figure}
-        \centering
-        \includegraphics[width=0.5\linewidth]{img2.jpg}
-        \caption{Enter Caption}
-        \label{fig:enter-label}
+\begin{figure}[h]
+    \centerline{\includegraphics[width=0.5\linewidth]{img1.jpg}}
+    \caption{HW 11}
 \end{figure}
 
-\section{Synthesis}
+
+
+
+\subsection{Homework 12 and 13}
+Homework 12:
+I solved this problem using diagrams on paper, but I do not know how to write it up into LaTeX. I got the optimal solution to be a flow rate of 19 with a minimum cut of the graph to be 19 as well. You can obtain 19 if you cut s->a and s->b or c->t and d->t. This follows the convention of maximal flow, minimal cut, which shows that our minimal cut will be equal to our maximum flow. These cuts are not necessarily unique, as I have shown two that are different above.
+
+Homework 13:
+
+The algorithm counts executions of line 5 across three nested loops:
+\begin{align}
+\sum_{k=1}^{n-1} \sum_{l=k+1}^{n} l &= \sum_{k=1}^{n-1} \left[\sum_{l=1}^{n} l - \sum_{l=1}^{k} l\right] \\
+&= \sum_{k=1}^{n-1} \left[\frac{n(n+1)}{2} - \frac{k(k+1)}{2}\right] \\
+&= (n-1) \cdot \frac{n(n+1)}{2} - \frac{1}{2}\sum_{k=1}^{n-1} k(k+1)
+\end{align}
+
+Expanding $k(k+1) = k^2 + k$ and using the given formulas:
+\begin{align}
+&= (n-1) \cdot \frac{n(n+1)}{2} - \frac{1}{2}\left[\frac{(n-1)n(2n-1)}{6} + \frac{(n-1)n}{2}\right] \\
+&= (n-1)n\left[\frac{n+1}{2} - \frac{2n-1}{12} - \frac{1}{4}\right] \\
+&= (n-1)n\left[\frac{6(n+1) - (2n-1) - 3}{12}\right] \\
+&= (n-1)n\left[\frac{4n + 4}{12}\right] = \frac{n(n-1)(n+1)}{3}
+\end{align}
+
+The algorithm returns $\frac{n(n-1)(n+1)}{3}$.
+
+\subsection*{2. Time Complexity}
+
+The algorithm has three nested loops with bounds:
+\begin{itemize}
+\item Outer loop: $k$ from $1$ to $n-1$ (runs $n-1$ times)
+\item Middle loop: $l$ from $k+1$ to $n$ (runs at most $n$ times per outer iteration)
+\item Inner loop: $m$ from $1$ to $l$ (runs at most $n$ times per middle iteration)
+\end{itemize}
+
+Total operations: $(n-1) \times n \times n = O(n^3)$.
+The worst-case running time is $O(n^3)$.
+
+\section{From Theory to Practice - Algorithm Analysis}
+Looking back on this course, I realize it took me on quite a journey through computation theory and problem-solving techniques. What started with pretty abstract concepts ended up connecting to things I could actually build and use.
+
+At the beginning, we dove DFAs and NFAs. I'll be honest—at first, these felt pretty theoretical and disconnected from "real" programming. But as we worked through examples, I started to see how these machines could recognize patterns and handle regular languages. The surprising thing I learned was that even though DFAs and NFAs look structurally different, they're actually equivalent in terms of what they can compute. Both can recognize exactly the same set of regular languages, which was one of those realization moments for me.
+
+Then we moved on to Turing Machines, and suddenly the scope got much bigger. These machines can handle any computation that's algorithmically possible, which is pretty eye opening. This is where we started talking about decidable problems—ones that can actually be solved by an algorithm—versus undecidable problems that simply can't be solved, no matter how clever we get. It was fascinating to learn that there are fundamental limits to what computation can achieve.
+
+The most rewarding part of the course was definitely our coding project,, where we built a Sudoku solver using an SAT solver. This finally brought everything together in a concrete way. We had to take the rules of Sudoku and encode them as a Boolean formula in CNF format, which essentially transformed the puzzle into a Boolean satisfiability problem. Using the SAT solver to find solutions felt odd at first, but I came to understand how it systematically searches for variable assignments that satisfy all the constraints.
+
+By the end of the course, I felt like I'd traveled from abstract mathematical models all the way to hands-on problem solving. The progression made sense—starting with simple automata, building up to the full power of Turing machines, exploring the boundaries of what's computationally feasible, and finally applying those insights to solve actual problems. It wasn't just about understanding computational theory anymore; I'd actually experienced how that theory translates into practical algorithmic solutions.
 
 \section{Evidence of Participation}
+Over the course of this semester, I asked all my questions in Discord, and went to one seminar that I forgot to write about in the Discord. My questions were as follows:
+
+\begin{itemize}
+    \item 1. How common are objects in our lives that follow a DFA scheme?
+    \item 2. Do all DFAs that have a purpose have a meaningful inverse? Or is there only a small subset of meaningful DFAs that have a meaningful inverse?
+    \item 3. Are there some things that regular expressions are poor at doing? 
+    \item 4. What are the limits of regular expressions?
+    \item 5. If we had a infinitely fast turing machine, what problems could we solve with it? For example, could we mine all remaining cryptocurrencies or solve the stock market?
+    \item 6. Can we create multiple constructions of turing machines that solve the same problem? 
+    \item 7. Is there an easier method to prove that a DFA follows a regex structure? 
+    \item 8. Can make a hardware version of a Turing machine, and could we make it more powerful than a modern processor? 
+    \item 9. Is the set of decidable problems infinite? Or what about the set of undecidable problems?
+\end{itemize}
+
+The seminar I went to was a speaker event about the use of AI by hiring managers in the job market. It was presented by a professor at Chapman University who works in the business school and was doing analytics. It was really interesting to see how important keywords are for applying to jobs. She also spoke about how people who graduate during a recession tend to have a lower lifetime household income. It was a very interesting event, and afterwards I felt inspired to apply to more jobs and secure work over the summer.
 
 \section{Conclusion}\label{conclusion}
+Looking back on this course, I can see that I've learned both foundational theory and its practical applications. When we started with deterministic and nondeterministic finite automata (DFAs and NFAs), I wasn't sure how these abstract machines would be relevant to my work as a software engineer or computer scientist. They seemed removed from the practical problems I usually encounter. As the course continued, though, I came to understand that these models provide a framework for thinking systematically about computation and problem solvability.
 
-\begin{thebibliography}{99}
-\bibitem[BLA]{bla} Author, \href{https://en.wikipedia.org/wiki/LaTeX}{Title}, Publisher, Year.
-\end{thebibliography}
+When we covered Turing machines, we examined which problems are computable and learned to distinguish between problems we can solve algorithmically and those that are inherently undecidable, such as the Halting Problem. This changed how I approach problems. Instead of immediately jumping into coding, I now consider whether a problem is actually solvable before beginning implementation. This approach has proven useful when working with complex systems, validating inputs, or designing algorithms for unusual cases.
+
+The section on NP-completeness was particularly valuable. We studied how to classify problems by computational difficulty and learned that certain problems, while easy to verify, may not be efficiently solvable. This concept became concrete during our Sudoku solver project using a SAT solver. We converted Sudoku rules into a Boolean satisfiability problem—an NP-complete problem—and used a SAT solver to find solutions. This project tied together the theoretical concepts we had studied in a practical way and helped solidify my understanding of the material.
+
+Now that the course is complete, I can see how algorithm analysis applies to various areas of software engineering and computer science. When working on data validation, optimizing backend systems, or evaluating new features, I find myself considering questions like: Is this problem computable? Is it tractable? Should I use a heuristic or approximation? These questions stem from the theory we covered and have influenced how I approach development work.
+
+Overall, this course has taught me not only how to solve problems, but also which problems can and cannot be solved which gives me a useful perspective to carry forward.
 
 \end{document}
